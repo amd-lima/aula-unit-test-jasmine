@@ -52,4 +52,16 @@ describe('BankingComponent', () => {
     expect(component.setMoneyWallet('2000')).not.toBeTruthy();
 
   });
+
+  it('(I) setMoney should take 10 from wallet and add 100 in savings', () => {
+    let el = fixture.debugElement.nativeElement;
+    el.querySelector('#input-depositar').value = '10';
+    el.querySelector('#depositar').click();
+
+    fixture.detectChanges();
+    expect(el.querySelector('#get-saving').textContent).toBe('1010');
+    expect(component.getMoney()).toBe(1010);
+    expect(component.getMoneyWallet()).toBe(90);
+  });
+
 });
